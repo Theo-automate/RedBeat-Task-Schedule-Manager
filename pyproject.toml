@@ -1,0 +1,64 @@
+[build-system]
+requires = ["setuptools>=69", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "redbeat-schedule-manager"
+version = "0.1.0"
+description = "Flask UI to manage Celery RedBeat schedules (import/export, search, CRUD)"
+readme = "README.md"
+authors = [{ name = "RedBeat Schedule Manager Maintainers" }]
+license = { file = "LICENSE" }
+requires-python = ">=3.9"
+keywords = ["celery", "redbeat", "flask", "scheduler", "redis"]
+classifiers = [
+  "Programming Language :: Python :: 3",
+  "License :: OSI Approved :: MIT License",
+  "Framework :: Flask",
+  "Topic :: System :: Monitoring",
+]
+dependencies = [
+  "Flask>=2.2",
+  "redis>=4.5",
+  "celery>=5.3",
+  "croniter>=2.0",
+  "python-dotenv>=1.0",
+]
+
+[project.optional-dependencies]
+dev = [
+  "pytest>=8",
+  "pytest-cov>=4",
+  "mypy>=1.10",
+  "ruff>=0.5.0",
+  "pre-commit>=3.7",
+  "types-redis",
+  "types-requests",
+  "types-croniter",
+]
+
+[project.urls]
+Homepage = "https://github.com/your-org/redbeat-schedule-manager"
+Issues = "https://github.com/your-org/redbeat-schedule-manager/issues"
+
+[tool.setuptools]
+packages = { find = { where = ["src"], include = ["redbeat_schedule_manager*"], exclude = ["tests*"] } }
+
+[tool.ruff]
+line-length = 140
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP"]
+
+[tool.pytest.ini_options]
+addopts = "-q"
+
+[tool.mypy]
+python_version = "3.9"
+ignore_missing_imports = true
+
+[tool.setuptools.package-data]
+redbeat_schedule_manager = [
+  "templates/*.html",
+  "static/**",
+]
