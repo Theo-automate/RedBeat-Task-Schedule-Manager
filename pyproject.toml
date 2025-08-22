@@ -21,6 +21,8 @@ dependencies = [
   "Flask>=2.2",
   "redis>=4.5",
   "celery>=5.3",
+  "croniter>=2.0",
+  "python-dotenv>=1.0",
 ]
 
 [project.optional-dependencies]
@@ -32,6 +34,7 @@ dev = [
   "pre-commit>=3.7",
   "types-redis",
   "types-requests",
+  "types-croniter",
 ]
 
 [project.urls]
@@ -42,7 +45,9 @@ Issues = "https://github.com/your-org/redbeat-schedule-manager/issues"
 packages = { find = { where = ["src"], include = ["redbeat_schedule_manager*"], exclude = ["tests*"] } }
 
 [tool.ruff]
-line-length = 100
+line-length = 140
+
+[tool.ruff.lint]
 select = ["E", "F", "I", "UP"]
 
 [tool.pytest.ini_options]
